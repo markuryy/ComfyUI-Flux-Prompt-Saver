@@ -9,6 +9,6 @@ Repository = "https://github.com/markuryy/ComfyUI-Flux-Prompt-Saver"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
-PublisherId = ""
+PublisherId = "markury"
 DisplayName = "ComfyUI-Flux-Prompt-Saver"
 Icon = ""
