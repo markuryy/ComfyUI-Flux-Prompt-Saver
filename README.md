@@ -25,7 +25,7 @@ To install the Flux Prompt Saver node:
    ```
 3. Restart ComfyUI and refresh.
 
-Note: This node is not currently available through ComfyUI Manager.
+Note: This node is also available through ComfyUI Manager for easy installation.
 
 ## Usage
 
