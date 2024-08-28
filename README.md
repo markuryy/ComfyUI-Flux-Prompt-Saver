@@ -35,6 +35,20 @@ Note: This node is also available through ComfyUI Manager for easy installation.
 4. Provide the positive prompt, model name, and optional negative prompt.
 5. Run your workflow. The Flux Prompt Saver will save your images with the appropriate metadata.
 
+## Example Workflow
+
+An example workflow is included in the repository to demonstrate the usage of the Flux Prompt Saver node. This workflow requires additional custom nodes:
+
+- [ComfyUI-Impact-Pack](https://github.com/ltdrdata/ComfyUI-Impact-Pack)
+- [ComfyUI-Custom-Scripts](https://github.com/pythongosssss/ComfyUI-Custom-Scripts)
+- [ComfyUI_Comfyroll_CustomNodes](https://github.com/RockOfFire/ComfyUI_Comfyroll_CustomNodes)
+- [ComfyUI_essentials](https://github.com/cubiq/ComfyUI_essentials)
+
+To use the example workflow:
+1. Install the required custom nodes (you can do so through ComfyUI Manager).
+2. Restart ComfyUI and refresh your browser window.
+3. Load the workflow by dragging and dropping the image file into ComfyUI.
+
 ## Notes
 
 This node is designed for users who need to save images with specific metadata from the Flux Sampler Parameters pipeline. It may not be necessary for all ComfyUI workflows.
