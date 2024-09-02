@@ -4,6 +4,7 @@ import numpy as np
 from PIL import Image
 from PIL.PngImagePlugin import PngInfo
 import folder_paths
+from datetime import datetime
 
 class FluxPromptSaver:
     @classmethod
@@ -34,7 +35,8 @@ class FluxPromptSaver:
             metadata = PngInfo()
             metadata.add_text("parameters", self.create_metadata_string(params, positive, negative, model_name))
             
-            filename = f"ComfyUI_{params[0]['seed']}.png"
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"FLUX_{timestamp}.png"
             path = folder_paths.get_output_directory()
             file_path = os.path.join(path, filename)
             
