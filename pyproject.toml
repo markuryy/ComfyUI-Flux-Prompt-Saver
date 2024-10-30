@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-flux-prompt-saver"
-description = "The Flux Prompt Saver is a custom node for ComfyUI that works in conjunction with the Flux Sampler Parameters node from the ComfyUI Essentials package. This node allows you to save images with metadata that includes information from the Flux Sampler Parameters pipeline."
-version = "1.0.0"
+description = "The Flux Prompt Saver is set of simple nodes for saving images generated with Flux with A1111-style metadata."
+version = "2.0.0"
 license = {file = "LICENSE"}
 
 [project.urls]

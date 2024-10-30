@@ -1,59 +1,72 @@
 # ComfyUI Flux Prompt Saver
 
-The Flux Prompt Saver is a custom node for ComfyUI that works in conjunction with the Flux Sampler Parameters node from the ComfyUI Essentials package. This node allows you to save images with metadata that includes information from the Flux Sampler Parameters pipeline.
+Custom nodes for ComfyUI to save images with standardized metadata that's compatible with common Stable Diffusion tools (Discord bots, prompt readers, image organization tools). Now includes its own sampling node copied from an earlier version of ComfyUI Essentials to maintain compatibility without requiring additional dependencies.
 
-## Features
+## Nodes
 
-- Saves images with metadata from the Flux Sampler Parameters pipeline
-- Uses checkpoint selection for model names
-- Combines sampler and scheduler information in the metadata
-  
-## Dependencies
+### 🐈‍⬛ Flux Text Sampler
+- Copy of the Flux Sampler Parameters node from ComfyUI Essentials (pre-LoRA version)
+- Works exactly like the original with ImpactWildcardEncode and other prompt nodes
+- Provides consistent parameter output format that many SD tools can read
+- Accepts integer seeds directly from primitive nodes
 
-This node requires the Flux Sampler Parameters node from the ComfyUI Essentials package by cubiq. You must install ComfyUI Essentials before using this node.
+### 🐈‍⬛ Flux Prompt Saver
+- Enhanced control with separate path and filename inputs
+- Flexible date formatting with `%date:FORMAT%` syntax
+- Automatically finds models across multiple directories (checkpoints, models, unet, diffusion_models)
+- Creates output directories as needed
+- Embeds comprehensive parameter metadata in saved images
 
-- [ComfyUI Essentials](https://github.com/cubiq/ComfyUI_essentials)
+### 🐈‍⬛ Model Name
+- Provides model selection from all available model directories
+- Simple string output for use with other nodes
+- Helps handle different model types without modifying loaders
 
 ## Installation
 
-To install the Flux Prompt Saver node:
+```bash
+git clone https://github.com/markuryy/ComfyUI-Flux-Prompt-Saver
+```
 
-1. Navigate to your ComfyUI custom nodes directory.
-2. Clone this repository:
-   ```
-   git clone https://github.com/markuryy/ComfyUI-Flux-Prompt-Saver
-   ```
-3. Restart ComfyUI and refresh.
+> Note: Also available through ComfyUI Manager
 
-Note: This node is also available through ComfyUI Manager for easy installation.
+## Breaking Changes in 2.0.0
+
+- Split save location into separate path and filename inputs
+- Removed dependency on ComfyUI Essentials
+- Added built-in `🐈‍⬛ Flux Text Sampler` (copy of original Flux Sampler Parameters)
+- Added `🐈‍⬛ Model Name` node for simpler model selection
+- Changed to `%date:FORMAT%` syntax for date formatting
 
 ## Usage
 
-1. Add the Flux Sampler Parameters node from ComfyUI Essentials to your workflow.
-2. Connect the output of VAE Decode to the "images" input of the Flux Prompt Saver.
-3. Connect the "params" output from the Flux Sampler Parameters node to the "params" input of the Flux Prompt Saver.
-4. Provide the positive prompt, model name, and optional negative prompt.
-5. Run your workflow. The Flux Prompt Saver will save your images with the appropriate metadata.
+### File Path Formatting
+The save_path and filename inputs support various placeholder patterns:
+- Date formats: `%date:FORMAT%` where FORMAT is any strftime format
+  - Example: `%date:yyyy-MM-dd%` for folder path
+  - Example: `FLUX_%date:HHmmss%` for filename
+- Image properties: `%width%`, `%height%`, `%seed%`
+
+### Example Paths
+```
+save_path: %date:yyyy-MM-dd%
+filename: FLUX_%date:HHmmss%
+# Results in: output/2024-01-30/FLUX_143022_00000_.png
+```
 
 ## Example Workflow
 
-An example workflow is included in the repository to demonstrate the usage of the Flux Prompt Saver node. This workflow requires additional custom nodes:
+![Example Workflow](examples/FluxPromptSaver-v02.png)
 
+Drag and drop the above image into ComfyUI to load the workflow (the workflow JSON is embedded in the image).
+
+### Required Nodes for Example
 - [ComfyUI-Impact-Pack](https://github.com/ltdrdata/ComfyUI-Impact-Pack)
 - [ComfyUI-Custom-Scripts](https://github.com/pythongosssss/ComfyUI-Custom-Scripts)
 - [ComfyUI_Comfyroll_CustomNodes](https://github.com/RockOfFire/ComfyUI_Comfyroll_CustomNodes)
-- [ComfyUI_essentials](https://github.com/cubiq/ComfyUI_essentials)
 
-To use the example workflow:
-1. Install the required custom nodes (you can do so through ComfyUI Manager).
-2. Restart ComfyUI and refresh your browser window.
-3. Load the workflow by dragging and dropping the image file into ComfyUI.
-
-## Notes
-
-This node is designed for users who need to save images with specific metadata from the Flux Sampler Parameters pipeline. It may not be necessary for all ComfyUI workflows.
+While no longer required, [ComfyUI_essentials](https://github.com/cubiq/ComfyUI_essentials) is still recommended for its other useful nodes.
 
 ## Credits
-
-- Flux Sampler Parameters node by [cubiq](https://github.com/cubiq)
+- Original Flux Sampler Parameters node by [cubiq](https://github.com/cubiq)
 - ComfyUI Essentials: https://github.com/cubiq/ComfyUI_essentials
